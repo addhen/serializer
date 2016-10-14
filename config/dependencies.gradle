@@ -1,0 +1,58 @@
+/*
+ * Copyright (c) 2016. Addhen Limited
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+allprojects {
+    repositories {
+        jcenter()
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+ext {
+    // Android
+    androidBuildToolsVersion = "24.0.2"
+    androidMinSdkVersion = 21
+    androidCompileSdkVersion = 24
+
+    // Libraries
+    daggerVersion = '2.6'
+    butterKnifeVersion = '8.2.1'
+    rxAndroidVersion = '2.0.0-RC1'
+    javaxAnnotationVersion = '1.0'
+    gsonVersion = '2.7'
+
+    // Testing
+    jUnitVersion = '4.12'
+    mockitoVersion = '2.2.1'
+    testRunnerVersion = '0.5'
+    testRulesVersion = '0.5'
+
+    appDependencies = [
+            daggerCompiler : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger         : "com.google.dagger:dagger:${daggerVersion}",
+            rxAndroid      : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            gson           : "com.google.code.gson:gson:${gsonVersion}",
+    ]
+
+    appTestDependencies = [
+            mockito   : "org.mockito:mockito-core:${mockitoVersion}",
+            testRunner: "com.android.support.test:runner:${testRunnerVersion}",
+            testRules : "com.android.support.test:rules:${testRulesVersion}",
+            junit     : "junit:junit:${jUnitVersion}",
+    ]
+}
