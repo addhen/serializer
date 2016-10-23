@@ -1,5 +1,5 @@
 <manifest
-        package="com.addhen.objectstore">
+        package="com.addhen.serializer">
     <application/>
 
 </manifest>
