@@ -1,6 +1,10 @@
-package com.addhen.serializer;
+package com.addhen.serializer.gson;
 
-import org.junit.Before;
+import com.google.gson.Gson;
+
+import com.addhen.serializer.BaseTestCase;
+import com.addhen.serializer.Cinema;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -13,14 +17,7 @@ import static junit.framework.Assert.assertNotNull;
 /**
  * @author Henry Addo
  */
-public class SerializerTest extends BaseTestCase {
-
-    private Serializer mSerializer;
-
-    @Before
-    public void setUp() {
-        mSerializer = new Serializer.Builder().build();
-    }
+public class GsonSerializationStrategyTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullySerializeToJsonStrings() {
@@ -45,7 +42,9 @@ public class SerializerTest extends BaseTestCase {
     @Test
     public void shouldSuccessfullyDeserializeStringToJson() {
         String jsonString = getJsonString();
-        Cinema cinema = mSerializer.serializationStrategy(Cinema.class).deserialize(jsonString);
+        GsonSerializationStrategy<Cinema>
+                serializationStrategy = getGsonSerializationStrategy();
+        Cinema cinema = serializationStrategy.deserialize(jsonString);
         assertNotNull(cinema);
         assertCinema(cinema);
     }
@@ -53,8 +52,9 @@ public class SerializerTest extends BaseTestCase {
     @Test
     public void shouldSuccessfullyDeserializeStringToList() {
         String jsonString = getJsonStrings();
-        List<Cinema> cinemas = Arrays
-                .asList(mSerializer.serializationStrategy(Cinema[].class).deserialize(jsonString));
+        GsonSerializationStrategy<Cinema[]>
+                serializationStrategy = new GsonSerializationStrategy<>(new Gson(), Cinema[].class);
+        List<Cinema> cinemas = Arrays.asList(serializationStrategy.deserialize(jsonString));
         assertNotNull(cinemas);
         assertEquals(1, cinemas.size());
         assertCinema(cinemas.get(0));
@@ -63,11 +63,21 @@ public class SerializerTest extends BaseTestCase {
     private String getJsonStrings() {
         List<Cinema> cinemas = new ArrayList<>();
         cinemas.add(getCinema());
-        return mSerializer.serializationStrategy(List.class).serialize(cinemas);
+        GsonSerializationStrategy<List> serializationStrategy = getListGsonSerializationStrategy();
+        return serializationStrategy.serialize(cinemas);
+    }
+
+    private GsonSerializationStrategy<List> getListGsonSerializationStrategy() {
+        return new GsonSerializationStrategy<>(new Gson(), List.class);
     }
 
     private String getJsonString() {
         Cinema cinema = getCinema();
-        return mSerializer.serializationStrategy(Cinema.class).serialize(cinema);
+        GsonSerializationStrategy<Cinema> serializationStrategy = getGsonSerializationStrategy();
+        return serializationStrategy.serialize(cinema);
+    }
+
+    private GsonSerializationStrategy<Cinema> getGsonSerializationStrategy() {
+        return new GsonSerializationStrategy<>(new Gson(), Cinema.class);
     }
 }

@@ -60,15 +60,6 @@ public class MoshiSerializationStrategyTest extends BaseTestCase {
         assertCinema(cinemas.get(0));
     }
 
-    private void assertCinema(Cinema cinema) {
-        assertNotNull(cinema);
-        assertEquals("Silverbird", cinema.name);
-        assertNotNull(cinema.location);
-        assertEquals(0.00, cinema.location.latitude);
-        assertEquals(0.00, cinema.location.longitude);
-        assertEquals("Accra Mall", cinema.locationName);
-    }
-
     private String getJsonStrings() {
         List<Cinema> cinemas = new ArrayList<>();
         cinemas.add(getCinema());

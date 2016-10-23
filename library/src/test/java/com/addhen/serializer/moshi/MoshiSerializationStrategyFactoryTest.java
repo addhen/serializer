@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertNotNull;
 public class MoshiSerializationStrategyFactoryTest extends BaseTestCase {
 
     @Test
-    public void shouldReturnMoshiSerializationStrategy() {
+    public void shouldCreateMoshiSerializationStrategy() {
         MoshiSerializationStrategyFactory factory = MoshiSerializationStrategyFactory.create();
         assertNotNull(factory.strategy(Cinema.class));
     }
