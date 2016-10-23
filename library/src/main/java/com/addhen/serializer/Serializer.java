@@ -1,7 +1,7 @@
 package com.addhen.serializer;
 
 
-import com.addhen.serializer.gson.GsonSerializationFactory;
+import com.addhen.serializer.gson.GsonSerializationStrategyFactory;
 
 /**
  * @author Henry Addo
@@ -35,7 +35,7 @@ public final class Serializer {
         }
 
         public Builder() {
-            this(GsonSerializationFactory.create());
+            this(GsonSerializationStrategyFactory.create());
         }
 
         public Builder serializationStrategyFactory(SerializationStrategy.Factory factory) {

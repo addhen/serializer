@@ -15,7 +15,6 @@
  *
  */
 apply plugin: 'com.android.library'
-apply plugin: 'me.tatarka.retrolambda'
 apply plugin: 'com.noveogroup.android.check'
 
 def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -53,12 +52,8 @@ dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def appTestDependencies = rootProject.ext.appTestDependencies
 
-    annotationProcessor appDependencies.daggerCompiler
-    compile appDependencies.rxAndroid
+    compile appDependencies.moshi
     compile appDependencies.gson
-    provided appDependencies.javaxAnnotation
 
     testCompile appTestDependencies.junit
-    testCompile appTestDependencies.mockito
-    testAnnotationProcessor appDependencies.daggerCompiler
 }

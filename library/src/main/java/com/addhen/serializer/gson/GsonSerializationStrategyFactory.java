@@ -8,23 +8,23 @@ import com.addhen.serializer.SerializationStrategy;
 /**
  * @author Henry Addo
  */
-public final class GsonSerializationFactory extends SerializationStrategy.Factory {
+public final class GsonSerializationStrategyFactory extends SerializationStrategy.Factory {
 
     private final Gson mGson;
 
-    private GsonSerializationFactory(Gson gson) {
+    private GsonSerializationStrategyFactory(Gson gson) {
         if (gson == null) {
             throw new NullPointerException("Gson cannot be null.");
         }
         mGson = gson;
     }
 
-    public static GsonSerializationFactory create() {
+    public static GsonSerializationStrategyFactory create() {
         return create(new Gson());
     }
 
-    public static GsonSerializationFactory create(Gson gson) {
-        return new GsonSerializationFactory(gson);
+    public static GsonSerializationStrategyFactory create(Gson gson) {
+        return new GsonSerializationStrategyFactory(gson);
     }
 
     @Override

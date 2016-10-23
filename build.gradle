@@ -24,7 +24,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
-        classpath 'me.tatarka:gradle-retrolambda:3.3.0'
         classpath 'com.github.alxndrsn:android-check:1f87548c0686d823e5f1490a2053b70bd9f5022e'
 
         // NOTE: Do not place your application dependencies here; they belong
