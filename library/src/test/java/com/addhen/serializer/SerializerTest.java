@@ -1,5 +1,8 @@
 package com.addhen.serializer;
 
+import com.addhen.serializer.gson.GsonSerializationStrategyFactory;
+import com.addhen.serializer.moshi.MoshiSerializationStrategyFactory;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,6 +12,7 @@ import java.util.List;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 /**
  * @author Henry Addo
@@ -24,6 +28,7 @@ public class SerializerTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullySerializeToJsonStrings() {
+        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonStrings();
         assertNotNull(jsonString);
         assertEquals(
@@ -33,7 +38,35 @@ public class SerializerTest extends BaseTestCase {
     }
 
     @Test
+    public void shouldUseMoshiToSerialize() {
+        MoshiSerializationStrategyFactory factory = MoshiSerializationStrategyFactory.create();
+        mSerializer.setSerializationFactory(factory);
+        assertTrue(mSerializer.serializationFactory() instanceof MoshiSerializationStrategyFactory);
+        String jsonString = getJsonString();
+        assertNotNull(jsonString);
+        assertEquals(
+                "{\"location\":{\"latitude\":0.0,\"longitude\":0.0},\"locationName\":"
+                        + "\"Accra Mall\",\"name\":\"Silverbird\"}",
+                jsonString);
+    }
+
+    @Test
+    public void shouldUseMoshiToDeserialize() {
+        MoshiSerializationStrategyFactory factory = MoshiSerializationStrategyFactory.create();
+        mSerializer.setSerializationFactory(factory);
+        assertTrue(mSerializer.serializationFactory() instanceof MoshiSerializationStrategyFactory);
+        String jsonString = getJsonStrings();
+        List<Cinema> cinemas = Arrays
+                .asList(mSerializer.serializationStrategy(Cinema[].class).deserialize(jsonString));
+        assertNotNull(cinemas);
+        assertEquals(1, cinemas.size());
+        assertCinema(cinemas.get(0));
+
+    }
+
+    @Test
     public void shouldSuccessfullySerializeToJsonString() {
+        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonString();
         assertNotNull(jsonString);
         assertEquals(
@@ -44,6 +77,7 @@ public class SerializerTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullyDeserializeStringToJson() {
+        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonString();
         Cinema cinema = mSerializer.serializationStrategy(Cinema.class).deserialize(jsonString);
         assertNotNull(cinema);
