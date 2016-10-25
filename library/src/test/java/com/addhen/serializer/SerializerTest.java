@@ -28,7 +28,8 @@ public class SerializerTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullySerializeToJsonStrings() {
-        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
+        assertTrue(mSerializer
+                .serializationStrategyFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonStrings();
         assertNotNull(jsonString);
         assertEquals(
@@ -40,8 +41,11 @@ public class SerializerTest extends BaseTestCase {
     @Test
     public void shouldUseMoshiToSerialize() {
         MoshiSerializationStrategyFactory factory = MoshiSerializationStrategyFactory.create();
-        mSerializer.setSerializationFactory(factory);
-        assertTrue(mSerializer.serializationFactory() instanceof MoshiSerializationStrategyFactory);
+        mSerializer = new Serializer.Builder()
+                .setSerializationStrategyFactory(factory)
+                .build();
+        assertTrue(mSerializer
+                .serializationStrategyFactory() instanceof MoshiSerializationStrategyFactory);
         String jsonString = getJsonString();
         assertNotNull(jsonString);
         assertEquals(
@@ -53,11 +57,14 @@ public class SerializerTest extends BaseTestCase {
     @Test
     public void shouldUseMoshiToDeserialize() {
         MoshiSerializationStrategyFactory factory = MoshiSerializationStrategyFactory.create();
-        mSerializer.setSerializationFactory(factory);
-        assertTrue(mSerializer.serializationFactory() instanceof MoshiSerializationStrategyFactory);
+        mSerializer = new Serializer.Builder()
+                .setSerializationStrategyFactory(factory)
+                .build();
+        assertTrue(mSerializer
+                .serializationStrategyFactory() instanceof MoshiSerializationStrategyFactory);
         String jsonString = getJsonStrings();
         List<Cinema> cinemas = Arrays
-                .asList(mSerializer.serializationStrategy(Cinema[].class).deserialize(jsonString));
+                .asList(mSerializer.strategy(Cinema[].class).deserialize(jsonString));
         assertNotNull(cinemas);
         assertEquals(1, cinemas.size());
         assertCinema(cinemas.get(0));
@@ -66,7 +73,8 @@ public class SerializerTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullySerializeToJsonString() {
-        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
+        assertTrue(mSerializer
+                .serializationStrategyFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonString();
         assertNotNull(jsonString);
         assertEquals(
@@ -77,9 +85,10 @@ public class SerializerTest extends BaseTestCase {
 
     @Test
     public void shouldSuccessfullyDeserializeStringToJson() {
-        assertTrue(mSerializer.serializationFactory() instanceof GsonSerializationStrategyFactory);
+        assertTrue(mSerializer
+                .serializationStrategyFactory() instanceof GsonSerializationStrategyFactory);
         String jsonString = getJsonString();
-        Cinema cinema = mSerializer.serializationStrategy(Cinema.class).deserialize(jsonString);
+        Cinema cinema = mSerializer.strategy(Cinema.class).deserialize(jsonString);
         assertNotNull(cinema);
         assertCinema(cinema);
     }
@@ -88,7 +97,7 @@ public class SerializerTest extends BaseTestCase {
     public void shouldSuccessfullyDeserializeStringToList() {
         String jsonString = getJsonStrings();
         List<Cinema> cinemas = Arrays
-                .asList(mSerializer.serializationStrategy(Cinema[].class).deserialize(jsonString));
+                .asList(mSerializer.strategy(Cinema[].class).deserialize(jsonString));
         assertNotNull(cinemas);
         assertEquals(1, cinemas.size());
         assertCinema(cinemas.get(0));
@@ -97,11 +106,11 @@ public class SerializerTest extends BaseTestCase {
     private String getJsonStrings() {
         List<Cinema> cinemas = new ArrayList<>();
         cinemas.add(getCinema());
-        return mSerializer.serializationStrategy(List.class).serialize(cinemas);
+        return mSerializer.strategy(List.class).serialize(cinemas);
     }
 
     private String getJsonString() {
         Cinema cinema = getCinema();
-        return mSerializer.serializationStrategy(Cinema.class).serialize(cinema);
+        return mSerializer.strategy(Cinema.class).serialize(cinema);
     }
 }

@@ -14,15 +14,12 @@ public final class Serializer {
         mFactory = factory;
     }
 
-    public void setSerializationFactory(SerializationStrategy.Factory factory) {
-        mFactory = factory;
-    }
 
-    public SerializationStrategy.Factory serializationFactory() {
+    public SerializationStrategy.Factory serializationStrategyFactory() {
         return mFactory;
     }
 
-    public <T> SerializationStrategy<T> serializationStrategy(Class<T> type) {
+    public <T> SerializationStrategy<T> strategy(Class<T> type) {
         return mFactory.strategy(type);
     }
 
@@ -38,7 +35,7 @@ public final class Serializer {
             this(GsonSerializationStrategyFactory.create());
         }
 
-        public Builder serializationStrategyFactory(SerializationStrategy.Factory factory) {
+        public Builder setSerializationStrategyFactory(SerializationStrategy.Factory factory) {
             if (factory == null) {
                 throw new NullPointerException("Serialization Strategy factory cannot be null.");
             }
