@@ -1,13 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE module PUBLIC
-        "-//Puppy Crawl//DTD Check Configuration 1.2//EN"
-        "http://www.puppycrawl.com/dtds/configuration_1_2.dtd">
+        "-//Puppy Crawl//DTD Check Configuration 1.1//EN"
+        "http://www.puppycrawl.com/dtds/configuration_1_1.dtd">
+
 <module name="Checker">
-    <property name="fileExtensions" value="java, xml, properties"/>
     <module name="FileLength">
         <property name="max" value="1000"/>
         <property name="fileExtensions" value=""/>
     </module>
+
+    <module name="SuppressionFilter">
+        <property name="file" value="${checkstyleSuppressionsPath}"/>
+    </module>
+
     <module name="TreeWalker">
 
         <!-- See http://checkstyle.sf.net/config_sizes.html !-->
@@ -45,12 +50,13 @@
         <!-- Checks the number of parameters of a method or constructor. !-->
         <!-- See http://checkstyle.sf.net/config_sizes.html !-->
         <module name="ParameterNumber">
-            <property name="max" value="10"/>
+            <property name="max" value="12"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
         </module>
 
     </module>
     <module name="TreeWalker">
+
         <!-- Checks the padding of an empty for initializer. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="EmptyForInitializerPad">
@@ -76,6 +82,7 @@
             <property name="tokens"
                       value="CTOR_DEF, LITERAL_NEW, METHOD_CALL, METHOD_DEF, SUPER_CTOR_CALL "/>
         </module>
+
         <!-- Checks that there is no whitespace after a token. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="NoWhitespaceAfter">
@@ -106,7 +113,7 @@
         <module name="ParenPad">
             <property name="option" value="nospace"/>
             <property name="tokens"
-                      value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/>
+                      value="CTOR_CALL, LPAREN, METHOD_CALL, RPAREN, SUPER_CTOR_CALL"/>
         </module>
 
         <!-- Checks the policy on the padding of parentheses for typecasts. !-->
@@ -145,7 +152,9 @@
         <!-- Checks that each variable declaration is in its own statement and on its own line. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="MultipleVariableDeclarations"/>
+
     </module>
+
     <!-- Checks that there are no tabs in the source file !-->
     <!-- http://checkstyle.sourceforge.net/config_whitespace.html#FileTabCharacter !-->
     <module name="FileTabCharacter"/>
@@ -238,8 +247,10 @@
             <property name="applyToPackage" value="true"/>
             <property name="applyToPrivate" value="true"/>
         </module>
+
     </module>
     <module name="TreeWalker">
+
         <!-- Validates Javadoc comments to help ensure they are well formed. !-->
         <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocStyle !-->
         <module name="JavadocStyle">
@@ -254,60 +265,94 @@
             <property name="tokens"
                       value="INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
         </module>
+
+        <!-- Checks Javadoc comments for class and interface definitions. !-->
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocType !-->
+        <!--><module name="JavadocType">
+            <property name="scope" value="package"/> -->
+        <!--
+        <property name="excludeScope"          value=""/>
+        !-->
+        <!--<property name="authorFormat"          value=""/>!-->
+        <!--<property name="versionFormat"         value=""/>!-->
+        <!-- <property name="allowMissingParamTags" value="false"/>
+         <property name="allowUnknownTags" value="false"/>
+         <property name="tokens" value="INTERFACE_DEF, CLASS_DEF"/>
+     </module> -->
+
+        <!-- Checks to ensure that the javadoc tags exist (if required) !-->
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocMethod !-->
+        <!--<module name="JavadocMethod">
+            <property name="scope" value="package"/>
+            <!
+            <property name="excludeScope"                 value=""/>
+
+            <property name="allowUndeclaredRTE" value="false"/>
+            <property name="allowThrowsTagsForSubclasses" value="false"/>
+            <property name="allowMissingParamTags" value="false"/>
+            <property name="allowMissingThrowsTags" value="false"/>
+            <property name="allowMissingReturnTag" value="false"/>
+            <property name="allowMissingJavadoc" value="false"/>
+            <property name="allowMissingPropertyJavadoc" value="true"/>
+            <property name="logLoadErrors" value="true"/>
+            <property name="suppressLoadErrors" value="false"/>
+            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+        </module> -->
+
+        <!-- Checks that variables have Javadoc comments. !-->
+        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocVariable !-->
+        <module name="JavadocVariable">
+            <property name="scope" value="public"/>
+            <!--
+            <property name="excludeScope" value=""/>
+            !-->
+        </module>
+
     </module>
-
     <module name="TreeWalker">
-        <!-- Checks for common coding problems -->
-        <!-- See http://checkstyle.sourceforge.net/config_coding.html -->
-        <module name="EmptyStatement"/>
-        <module name="EqualsHashCode"/>
-        <module name="HiddenField">
-            <property name="severity" value="ignore"/>
-        </module>
-        <module name="IllegalInstantiation"/>
-        <module name="InnerAssignment"/>
-        <module name="MagicNumber">
-            <property name="severity" value="ignore"/>
-        </module>
-        <module name="MissingSwitchDefault">
-            <property name="severity" value="ignore"/>
-        </module>
-        <module name="SimplifyBooleanExpression"/>
-        <module name="SimplifyBooleanReturn"/>
 
-        <!-- Checks for class design -->
-        <!-- See http://checkstyle.sourceforge.net/config_design.html -->
-        <module name="FinalClass"/>
+        <!-- Ensure a class has a package declaration. !-->
+        <!-- See http://checkstyle.sf.net/config_coding.html !-->
+        <module name="PackageDeclaration">
+            <property name="ignoreDirectoryName" value="true"/>
+        </module>
+
+    </module>
+    <module name="TreeWalker">
+
+        <!-- Checks visibility of class members. !-->
+        <!-- See http://checkstyle.sf.net/config_design.html !-->
+        <!-- <module name="VisibilityModifier">
+            <property name="packageAllowed" value="false"/>
+            <property name="protectedAllowed" value="true"/>
+            <property name="publicMemberPattern" value="^serialVersionUID$"/>
+            Ignore visibility check for members annotated with @Inject -->
+        <!-- <property name="ignoreAnnotationCanonicalNames" value="javax.inject.Inject"/>-->
+        <!-- </module> -->
+
+        <!-- Checks that classes (except abstract one) define actor and don't rely on the default one. !-->
+        <!-- See http://checkstyle.sf.net/config_coding.html !-->
+        <!--<module name="MissingCtor"/>!-->
+
+        <!-- Make sure that utility classes (classes that contain only static methods) do not have a public constructor. !-->
+        <!-- See http://checkstyle.sf.net/config_design.html !-->
         <module name="HideUtilityClassConstructor"/>
-        <module name="InterfaceIsType">
-            <property name="severity" value="ignore"/>
-        </module>
-        <module name="VisibilityModifier">
-            <property name="severity" value="ignore"/>
-        </module>
 
-
-        <!-- Miscellaneous other checks. -->
-        <!-- See http://checkstyle.sourceforge.net/config_misc.html -->
-        <module name="ArrayTypeStyle"/>
-        <module name="TodoComment">
-            <property name="format" value="(?i)\s+CR\s+"/>
-            <property name="severity" value="info"/>
-        </module>
-        <module name="UpperEll"/>
     </module>
-
     <module name="TreeWalker">
+
         <!-- Checks that the order of modifiers conforms to the suggestions in the Java Language specification, !-->
         <!-- sections 8.1.1, 8.3.1 and 8.4.3. !-->
         <!-- See http://checkstyle.sf.net/config_modifiers.html !-->
         <module name="ModifierOrder"/>
 
         <!-- Checks that there are no redundant modifiers. !-->
-        <!-- See http://checkstyle.sf.net/config_modifiers.html !-->
+        <!-- See http://checkstyle.sf.net/config_modifiers.html
         <module name="RedundantModifier">
             <property name="tokens" value="METHOD_DEF, VARIABLE_DEF, ANNOTATION_FIELD_DEF"/>
         </module>
+         !-->
+
         <!-- Checks that a class which has only private constructors is declared as final. !-->
         <!-- See http://checkstyle.sf.net/config_design.html !-->
         <module name="FinalClass"/>
@@ -327,13 +372,18 @@
         <module name="ThrowsCount">
             <property name="max" value="2"/>
         </module>
+
         <!-- Checks that classes that define a covariant equals() method also override method equals(java.lang.Object). !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="CovariantEquals"/>
 
         <!-- Checks declaration order according to Code Conventions for the Java Programming Language. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="DeclarationOrder"/>
+        <module name="DeclarationOrder">
+            <property name="ignoreConstructors" value="false"/>
+            <property name="ignoreMethods" value="false"/>
+            <property name="ignoreModifiers" value="false"/>
+        </module>
 
         <!-- Check that the default is after all the cases in a switch statement. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
@@ -365,6 +415,7 @@
                                            DIV_ASSIGN, MINUS_ASSIGN, MOD_ASSIGN, PLUS_ASSIGN, SL_ASSIGN,
                                            SR_ASSIGN, STAR_ASSIGN"/>
         </module>
+
         <!-- Checks that switch statement has "default" clause. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="MissingSwitchDefault"/>
@@ -381,5 +432,7 @@
         <!-- Checks for unused import statements. !-->
         <!-- See http://checkstyle.sf.net/config_import.html !-->
         <module name="UnusedImports"/>
+
     </module>
+
 </module>

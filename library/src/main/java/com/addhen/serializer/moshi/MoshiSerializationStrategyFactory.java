@@ -7,7 +7,7 @@ import com.squareup.moshi.Moshi;
 /**
  * @author Henry Addo
  */
-public class MoshiSerializationStrategyFactory extends SerializationStrategy.Factory {
+public final class MoshiSerializationStrategyFactory extends SerializationStrategy.Factory {
 
     private final Moshi mMoshi;
 

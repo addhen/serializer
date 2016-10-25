@@ -14,38 +14,16 @@
  * limitations under the License.
  *
  */
-apply plugin: 'com.android.library'
-apply plugin: 'com.noveogroup.android.check'
+apply plugin: 'java'
+apply from: '../config/quality.gradle'
+apply from: '../config/jacoco-codecoverage.gradle'
 
-def globalConfiguration = rootProject.extensions.getByName("ext")
-android {
-    compileSdkVersion rootProject.ext.androidCompileSdkVersion
-    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
 
-    defaultConfig {
-        minSdkVersion rootProject.ext.androidMinSdkVersion
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    lintOptions {
-        abortOnError true
-        disable 'InvalidPackage'  // Some libraries have issues with this
-        warningsAsErrors true
-        htmlReport false
-        xmlReport false
-        textReport true
-        textOutput 'stdout'
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+tasks.matching { it instanceof Test }.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+    testLogging.showStandardStreams = true
 }
 
 dependencies {

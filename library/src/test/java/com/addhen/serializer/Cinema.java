@@ -35,8 +35,10 @@ public class Cinema implements Serializable {
 
     public static class LatLng {
 
+        /** Location's latitude */
         public Double latitude;
 
+        /** Location's longitude */
         public Double longitude;
 
         public LatLng(Double latitude, Double longitude) {

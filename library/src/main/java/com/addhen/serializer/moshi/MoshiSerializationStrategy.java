@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * @author Henry Addo
  */
-public class MoshiSerializationStrategy<T> implements SerializationStrategy<T> {
+public final class MoshiSerializationStrategy<T> implements SerializationStrategy<T> {
 
     private final com.squareup.moshi.JsonAdapter<T> mJsonAdapter;
 
