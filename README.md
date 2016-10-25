@@ -1,6 +1,6 @@
 # Serializer
 
-[![Build Status](https://travis-ci.org/addhen/serializer.svg?branch=master)](https://travis-ci.org/addhen/serializer) [![License](https://img.shields.io/badge/license-Apache%202-green.svg?style=flat)](https://github.com/addhen/serializer/blob/master/LICENSE.txt)
+[![Build Status](https://travis-ci.org/addhen/serializer.svg?branch=master)](https://travis-ci.org/addhen/serializer) [![codecov.io](https://codecov.io/github/addhen/serializer/coverage.svg?branch=master)](https://codecov.io/github/addhen/serializer?branch=master) [![License](https://img.shields.io/badge/license-Apache%202-green.svg?style=flat)](https://github.com/addhen/serializer/blob/master/LICENSE.txt)
 
 
 Serializer is a tiny utility that allows you to de/serialize object from/to JSON blob. This in a way allows 
