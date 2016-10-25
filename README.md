@@ -1,4 +1,7 @@
-### Serializer
+# Serializer
+
+[![Build Status](https://travis-ci.org/addhen/tray.svg?branch=master)](https://travis-ci.org/addhen/serializer) [![License](https://img.shields.io/badge/license-Apache%202-green.svg?style=flat)](https://github.com/addhen/serializer/blob/master/LICENSE.txt)
+
 
 Serializer is a tiny utility that allows you to de/serialize object from/to JSON blob. This in a way allows 
 you to save the JSON blob as a string in a `SharedPreference` or in a database. 
@@ -84,3 +87,20 @@ cinemas = Arrays.asList(mSerializer.strategy(Cinema[].class).deserialize(cinemas
 ```
 
 For more usage examples, look inside [test](https://github.com/addhen/serilaizer/blob/master/src/test/java/com/addhen/serializer/SerializerTest.java).
+
+# License
+
+```
+Copyright 2016 Addhen
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
