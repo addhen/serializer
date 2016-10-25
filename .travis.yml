@@ -1,9 +1,16 @@
 ---
 sudo: false
-language: java
+language: android
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-24.0.2
+    - android-24
+
 jdk:
   - oraclejdk8
-  - oraclejdk7
 before_cache:
   - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
