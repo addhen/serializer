@@ -86,7 +86,7 @@ cinemasJson = sharedPreferences.getString("cinemas", null);
 cinemas = Arrays.asList(mSerializer.strategy(Cinema[].class).deserialize(cinemasJson));
 ```
 
-For more usage examples, look inside [test](https://github.com/addhen/serilaizer/blob/master/src/test/java/com/addhen/serializer/SerializerTest.java) package.
+For more usage examples, look inside the [test](https://github.com/addhen/serilaizer/blob/master/src/test/java/com/addhen/serializer/SerializerTest.java) package.
 
 # License
 
