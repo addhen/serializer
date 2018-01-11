@@ -15,9 +15,11 @@
  *
  */
 apply plugin: 'java'
+apply plugin: 'maven'
 apply from: '../config/quality.gradle'
 apply from: '../config/jacoco-codecoverage.gradle'
 
+group = 'com.github.addhen'
 version = '1.0.0'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
