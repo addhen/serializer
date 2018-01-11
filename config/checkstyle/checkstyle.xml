@@ -12,9 +12,7 @@
     <module name="SuppressionFilter">
         <property name="file" value="${checkstyleSuppressionsPath}"/>
     </module>
-
     <module name="TreeWalker">
-
         <!-- See http://checkstyle.sf.net/config_sizes.html !-->
         <!-- Checks for long lines. !-->
         <module name="LineLength">
@@ -32,7 +30,6 @@
             <property name="maxProtected" value="100"/>
             <property name="maxPublic" value="100"/>
         </module>
-
         <!-- Checks for long methods and constructors. !-->
         <!-- See http://checkstyle.sf.net/config_sizes.html !-->
         <module name="MethodLength">
@@ -40,7 +37,6 @@
             <property name="countEmpty" value="true"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
         </module>
-
         <!-- Checks for the number of types declared at the outer (or root) level in a file. !-->
         <!-- See http://checkstyle.sourceforge.net/config_sizes.html#OuterTypeNumber !-->
         <module name="OuterTypeNumber">
@@ -53,10 +49,8 @@
             <property name="max" value="12"/>
             <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
         </module>
-
     </module>
     <module name="TreeWalker">
-
         <!-- Checks the padding of an empty for initializer. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="EmptyForInitializerPad">
@@ -97,7 +91,6 @@
             <property name="allowLineBreaks" value="false"/>
             <property name="tokens" value="SEMI, POST_DEC, POST_INC"/>
         </module>
-
         <!-- Checks the policy on how to wrap lines on operators. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="OperatorWrap">
@@ -107,28 +100,24 @@
                                            LOR, LT, MINUS, MOD, NOT_EQUAL,
                                            PLUS, QUESTION, SL, SR, STAR"/>
         </module>
-
         <!-- Checks the policy on the padding of parentheses. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="ParenPad">
             <property name="option" value="nospace"/>
             <property name="tokens"
-                      value="CTOR_CALL, LPAREN, METHOD_CALL, RPAREN, SUPER_CTOR_CALL"/>
+                      value="CTOR_CALL, METHOD_CALL, SUPER_CTOR_CALL"/>
         </module>
-
         <!-- Checks the policy on the padding of parentheses for typecasts. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="TypecastParenPad">
             <property name="option" value="nospace"/>
             <property name="tokens" value="TYPECAST, RPAREN"/>
         </module>
-
         <!-- Checks that a token is followed by whitespace. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="WhitespaceAfter">
             <property name="tokens" value="COMMA, SEMI, TYPECAST"/>
         </module>
-
         <!-- Checks that a token is surrounded by whitespace. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
         <module name="WhitespaceAround">
@@ -142,7 +131,6 @@
             <property name="allowEmptyConstructors" value="false"/>
             <property name="allowEmptyMethods" value="false"/>
         </module>
-
         <!-- The following checks are actually not whitespace checks, but still fit here quite well. !-->
 
         <!-- Checks that there is only one statement per line. !-->
@@ -152,9 +140,7 @@
         <!-- Checks that each variable declaration is in its own statement and on its own line. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="MultipleVariableDeclarations"/>
-
     </module>
-
     <!-- Checks that there are no tabs in the source file !-->
     <!-- http://checkstyle.sourceforge.net/config_whitespace.html#FileTabCharacter !-->
     <module name="FileTabCharacter"/>
@@ -185,14 +171,11 @@
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
             <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF"/>
         </module>
-
         <!-- Checks for local variable name naming conventions. !-->
         <!-- See http://checkstyle.sf.net/config_naming.html !-->
         <module name="LocalVariableName">
             <property name="format" value="^[a-z][a-zA-Z0-9]*$"/>
-            <property name="tokens" value="VARIABLE_DEF, PARAMETER_DEF"/>
         </module>
-
         <!-- Checks for member variable name naming conventions. !-->
         <!-- See http://checkstyle.sf.net/config_naming.html !-->
         <module name="MemberName">
@@ -214,7 +197,6 @@
         <module name="MethodTypeParameterName">
             <property name="format" value="^[A-Z]$"/>
         </module>
-
         <!-- Checks for package name naming conventions. !-->
         <!-- See http://checkstyle.sf.net/config_naming.html !-->
         <module name="PackageName">
@@ -247,7 +229,6 @@
             <property name="applyToPackage" value="true"/>
             <property name="applyToPrivate" value="true"/>
         </module>
-
     </module>
     <module name="TreeWalker">
 
@@ -265,40 +246,6 @@
             <property name="tokens"
                       value="INTERFACE_DEF, CLASS_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
         </module>
-
-        <!-- Checks Javadoc comments for class and interface definitions. !-->
-        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocType !-->
-        <!--><module name="JavadocType">
-            <property name="scope" value="package"/> -->
-        <!--
-        <property name="excludeScope"          value=""/>
-        !-->
-        <!--<property name="authorFormat"          value=""/>!-->
-        <!--<property name="versionFormat"         value=""/>!-->
-        <!-- <property name="allowMissingParamTags" value="false"/>
-         <property name="allowUnknownTags" value="false"/>
-         <property name="tokens" value="INTERFACE_DEF, CLASS_DEF"/>
-     </module> -->
-
-        <!-- Checks to ensure that the javadoc tags exist (if required) !-->
-        <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocMethod !-->
-        <!--<module name="JavadocMethod">
-            <property name="scope" value="package"/>
-            <!
-            <property name="excludeScope"                 value=""/>
-
-            <property name="allowUndeclaredRTE" value="false"/>
-            <property name="allowThrowsTagsForSubclasses" value="false"/>
-            <property name="allowMissingParamTags" value="false"/>
-            <property name="allowMissingThrowsTags" value="false"/>
-            <property name="allowMissingReturnTag" value="false"/>
-            <property name="allowMissingJavadoc" value="false"/>
-            <property name="allowMissingPropertyJavadoc" value="true"/>
-            <property name="logLoadErrors" value="true"/>
-            <property name="suppressLoadErrors" value="false"/>
-            <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
-        </module> -->
-
         <!-- Checks that variables have Javadoc comments. !-->
         <!-- See http://checkstyle.sf.net/config_javadoc.html#JavadocVariable !-->
         <module name="JavadocVariable">
@@ -307,16 +254,11 @@
             <property name="excludeScope" value=""/>
             !-->
         </module>
-
     </module>
     <module name="TreeWalker">
-
         <!-- Ensure a class has a package declaration. !-->
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
-        <module name="PackageDeclaration">
-            <property name="ignoreDirectoryName" value="true"/>
-        </module>
-
+        <module name="PackageDeclaration"/>
     </module>
     <module name="TreeWalker">
 
@@ -381,7 +323,6 @@
         <!-- See http://checkstyle.sf.net/config_coding.html !-->
         <module name="DeclarationOrder">
             <property name="ignoreConstructors" value="false"/>
-            <property name="ignoreMethods" value="false"/>
             <property name="ignoreModifiers" value="false"/>
         </module>
 
@@ -434,5 +375,4 @@
         <module name="UnusedImports"/>
 
     </module>
-
 </module>
