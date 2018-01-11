@@ -18,20 +18,17 @@ apply plugin: 'java'
 apply from: '../config/quality.gradle'
 apply from: '../config/jacoco-codecoverage.gradle'
 
+version = '1.0.0'
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
-
 tasks.matching { it instanceof Test }.all {
     testLogging.events = ["failed", "passed", "skipped"]
     testLogging.showStandardStreams = true
 }
-
 dependencies {
     def appDependencies = rootProject.ext.appDependencies
     def appTestDependencies = rootProject.ext.appTestDependencies
-
     compile appDependencies.moshi
     compile appDependencies.gson
-
     testCompile appTestDependencies.junit
 }
