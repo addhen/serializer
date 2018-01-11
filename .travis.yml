@@ -9,7 +9,15 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
+before_script:
+  - export VERSION_TO_BUILD="$TRAVIS_TAG"
 script: ./gradlew clean build
-
+deploy:
+  provider: releases
+  api_key: $GITHUB_OAUTH_TOKEN
+  file: serializer/build/libs/serializer-${VERSION_TO_BUILD}.jar
+  skip_cleanup: true
+  on:
+    tags: true
 after_success:
   - bash <(curl -s https://codecov.io/bash)
