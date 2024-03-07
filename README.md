@@ -19,7 +19,7 @@ To integrate the library into your app, you need to make a few changes in the `b
 as follows:
 
 **Step 1.** 
-Add the JitPack repository to your build file. Add it in your root `build.gradle` in the `repositories` block:
+Add the JitPack repository to your build file. Add it to your root `build.gradle` in the `repositories` block:
 
 ```java
 allprojects {
